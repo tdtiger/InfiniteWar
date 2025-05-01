@@ -4,6 +4,13 @@ using UnityEngine;
 
 public class HitBox : MonoBehaviour
 {
+    [SerializeField]
+    private Collider hitbox;
+
+    void Start(){
+        hitbox.enabled = false;
+    }
+
     void OnTriggerEnter(Collider other){
         if(other.CompareTag("Enemy")){
             Debug.Log("Hit!");
@@ -14,5 +21,15 @@ public class HitBox : MonoBehaviour
                 enemyRb.AddForce(forceDir * 10f, ForceMode.Impulse);
             }
         }
+    }
+
+    public void EnableHitBox(){
+        Debug.Log("Hitbox enabled");
+        hitbox.enabled = true;
+    }
+
+    public void DisableHitBox(){
+        Debug.Log("Hitbox disabled");
+        hitbox.enabled = false;
     }
 }
