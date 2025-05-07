@@ -75,7 +75,8 @@ crashlytics-build.properties
 *.mp3
 *.wav
 *.aif
-*.aif
 *.wma
 
 *.pptx
+
+Assets/Imports/

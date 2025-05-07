@@ -16,14 +16,26 @@ public class EnemyManager : MonoBehaviour
     [SerializeField]
     private float spawnRadius = 5f;
 
+    private int enemyCount = 0;
+    public int EnemyCount{
+        get{
+            return enemyCount;
+        }
+        set{
+            enemyCount = value;
+        }
+    }
+
     private float timer = 0;
 
     void Update(){
         timer += Time.deltaTime;
         // 一定時間経過で敵生成
-        if(timer >= spawnInterval){
+        if(timer >= spawnInterval && enemyCount < 10){
             SpawnEnemy();
             timer = 0;
+            EnemyCount++;
+            Debug.Log(EnemyCount);
         }
     }
 

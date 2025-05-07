@@ -18,7 +18,7 @@ public class HitBox : MonoBehaviour
             Rigidbody enemyRb = other.GetComponent<Rigidbody>();
             if(enemyRb != null){
                 Vector3 forceDir = (other.transform.position - transform.position).normalized;
-                enemyRb.AddForce(forceDir * 10f, ForceMode.Impulse);
+                enemyRb.AddForce(forceDir * 20f, ForceMode.Impulse);
             }
         }
     }
