@@ -9,12 +9,10 @@ public class EnemyManager : MonoBehaviour
     private GameObject enemyPrefab;
 
     // 敵の生成間隔
-    [SerializeField]
     private float spawnInterval = 3f;
 
     // ステージ中心からの距離
-    [SerializeField]
-    private float spawnRadius = 5f;
+    private float spawnRadius = 15f;
 
     private int enemyCount = 0;
     public int EnemyCount{

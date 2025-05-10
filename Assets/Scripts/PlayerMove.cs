@@ -5,17 +5,26 @@ using UnityEngine;
 public class PlayerMove : MonoBehaviour
 {
     // プレイヤーの移動速度
+    private float moveSpeed = 7f;
+
+    // ジョイスティック
     [SerializeField]
-    private float moveSpeed = 5f;
+    private Joystick joystick;
 
     // 移動時の方向管理
     private Vector3 moveDirection;
 
     void Update(){
-        // 横方向の入力検出
-        float horizontal = Input.GetAxis("Horizontal");
-        // 縦方向の入力検出
-        float vertical = Input.GetAxis("Vertical");
+        // スマホの場合はジョイスティックの値を取得
+        #if UNITY_ANDROID || UNITY_IOS
+            float horizontal = joystick.Horizontal;
+            float vertical = joystick.Vertical;
+        // PCの場合はキー入力を取得
+        #else
+            float horizontal = Input.GetAxis("Horizontal");
+            float vertical = Input.GetAxis("Vertical");
+        #endif
+
         // 方向のベクトル(正規化)
         moveDirection = new Vector3(horizontal, 0, vertical).normalized;
         if(moveDirection != Vector3.zero){

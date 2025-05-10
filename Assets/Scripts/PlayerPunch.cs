@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerPunch : MonoBehaviour
 {
@@ -9,14 +10,25 @@ public class PlayerPunch : MonoBehaviour
     [SerializeField]
     private Collider hitbox;
 
+    [SerializeField]
+    private Button button;
+
     void Start(){
         animator = GetComponent<Animator>();
     }
 
     void Update(){
-        if(Input.GetKeyDown(KeyCode.Space)){
-            animator.SetTrigger("Punch");
-        }
+        // スマホの場合はボタンを押したら攻撃
+        #if UNITY_ANDROID || UNITY_IOS
+            if(button.GetComponent<Button>().IsPressed()){
+                animator.SetTrigger("Punch");
+            }
+        // PCの場合はスペースキーを押したら攻撃
+        #else
+            if(Input.GetKeyDown(KeyCode.Space)){
+                animator.SetTrigger("Punch");
+            }
+        #endif
     }
 
     public void EnableHitBox(){
