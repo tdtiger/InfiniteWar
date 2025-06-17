@@ -5,6 +5,9 @@ using UnityEngine;
 public class HitBox : MonoBehaviour
 {
     [SerializeField]
+    private PlayerPunch playerPunch;
+
+    [SerializeField]
     private Collider hitbox;
 
     void Start(){
@@ -18,7 +21,7 @@ public class HitBox : MonoBehaviour
             Rigidbody enemyRb = other.GetComponent<Rigidbody>();
             if(enemyRb != null){
                 Vector3 forceDir = (other.transform.position - transform.position).normalized;
-                enemyRb.AddForce(forceDir * 20f, ForceMode.Impulse);
+                enemyRb.AddForce(forceDir * playerPunch.Power * playerPunch.KnockbackForce, ForceMode.Impulse);
             }
         }
     }

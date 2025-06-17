@@ -1371,7 +1371,7 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1914714264}
   serializedVersion: 4
-  m_Mass: 1
+  m_Mass: 20
   m_Drag: 0
   m_AngularDrag: 0.05
   m_CenterOfMass: {x: 0, y: 0, z: 0}
@@ -1388,7 +1388,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 80
   m_CollisionDetection: 0
 --- !u!4 &1914714270 stripped
 Transform:
@@ -1455,6 +1455,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 159eadb6ad2a58d4aa96026bd405a271, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerPunch: {fileID: 1914714272}
   hitbox: {fileID: 309712728}
 --- !u!114 &1914714277
 MonoBehaviour:
