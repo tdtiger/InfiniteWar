@@ -23,7 +23,7 @@ public class PlayerPunch : MonoBehaviour
         }
     }
     private float maxPower = 20f;
-    private float chargeSpeed = 1f;
+    private float chargeSpeed = 2f;
     private float knockbackForce = 5f;
     public float KnockbackForce{
         get{
@@ -33,9 +33,12 @@ public class PlayerPunch : MonoBehaviour
 
     private bool isPunching = false;
 
+    [SerializeField]
+    private PowerGaugeUI powerGaugeUI;
+
     void Start(){
         animator = GetComponent<Animator>();
-    }
+        powerGaugeUI.SetMaxPower(maxPower);    }
 
     void Update(){
         if (!isPunching){
@@ -43,19 +46,21 @@ public class PlayerPunch : MonoBehaviour
             Power = Mathf.Clamp(power, 0f, maxPower);
         }
 
+        powerGaugeUI.SetPower(Power);
+
         // スマホの場合はボタンを押したら攻撃
-        #if UNITY_ANDROID || UNITY_IOS
+#if UNITY_ANDROID || UNITY_IOS
             if(button.GetComponent<Button>().IsPressed()){
                 isPunching = true;
                 animator.SetTrigger("Punch");
             }
         // PCの場合はスペースキーを押したら攻撃
-        #else
-            if(Input.GetKeyDown(KeyCode.Space)){
-                isPunching = true;
-                animator.SetTrigger("Punch");
-            }
-        #endif
+#else
+        if (Input.GetKeyDown(KeyCode.Space)){
+            isPunching = true;
+            animator.SetTrigger("Punch");
+        }
+#endif
     }
 
     public void EnableHitBox(){
